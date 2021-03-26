@@ -42,3 +42,5 @@ output "vpc_id" {
 output "cidr" {
   value = aws_vpc.tfb.cidr_block
 }
+
+
