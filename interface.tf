@@ -45,11 +45,11 @@ output "private_subnet_id" {
 }
 
 output "vpc_id" {
-  value = aws_vpc.tfb.id
+  value = aws_vpc.webpa.id
 }
 
 output "cidr" {
-  value = aws_vpc.tfb.cidr_block
+  value = aws_vpc.webpa.cidr_block
 }
 
 
