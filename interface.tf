@@ -13,6 +13,11 @@ variable "public_subnet" {
   description = "The public subnet to create."
 }
 
+variable "private_subnet" {
+  type = string
+  description = "The private subnet to create."
+}
+
 variable "enable_dns_hostnames" {
   description = "Should be true if you want to use private DNS within the VPC"
   default     = true
@@ -33,6 +38,10 @@ variable "map_public_ip_on_launch" {
 
 output "public_subnet_id" {
   value = aws_subnet.public.id
+}
+
+output "private_subnet_id" {
+  value = aws_subnet.private.id
 }
 
 output "vpc_id" {
