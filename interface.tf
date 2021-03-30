@@ -14,7 +14,7 @@ variable "public_subnet" {
 }
 
 variable "private_subnet" {
-  type = string
+  type        = string
   description = "The private subnet to create."
 }
 

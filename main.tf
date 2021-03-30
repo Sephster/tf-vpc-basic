@@ -31,7 +31,7 @@ resource "aws_subnet" "public" {
 
 resource "aws_subnet" "private" {
   cidr_block = var.private_subnet
-  vpc_id = aws_vpc.webpa.id
+  vpc_id     = aws_vpc.webpa.id
   tags = {
     Name = "${var.name}-private"
   }
