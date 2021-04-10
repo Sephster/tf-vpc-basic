@@ -22,19 +22,23 @@ resource "aws_route" "internet_access" {
 
 resource "aws_subnet" "public" {
   vpc_id                  = aws_vpc.webpa.id
-  cidr_block              = var.public_subnet
+  cidr_block              = values(var.public_az_subnets)[count.index]
   map_public_ip_on_launch = var.map_public_ip_on_launch
   tags = {
-    Name = "${var.name}-public"
+    Name = "${var.name}-public-${count.index}"
   }
+  availability_zone = keys(var.public_az_subnets)[count.index]
+
+  count = length(var.public_az_subnets)
 }
 
 resource "aws_subnet" "private" {
-  cidr_block = var.private_subnet
   vpc_id     = aws_vpc.webpa.id
+  cidr_block = values(var.private_az_subnets)[count.index]
   tags = {
-    Name = "${var.name}-private"
+    Name = "${var.name}-private-${count.index}"
   }
+  availability_zone = keys(var.private_az_subnets)[count.index]
+
+  count = length(var.private_az_subnets)
 }
-
-

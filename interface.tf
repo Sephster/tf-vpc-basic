@@ -8,14 +8,14 @@ variable "cidr" {
   description = "The CIDR of the VPC."
 }
 
-variable "public_subnet" {
-  type        = string
-  description = "The public subnet to create."
+variable "private_az_subnets" {
+  type        = map(string)
+  description = "The private subnets to create on availability zones."
 }
 
-variable "private_subnet" {
-  type        = string
-  description = "The private subnet to create."
+variable "public_az_subnets" {
+  type        = map(string)
+  description = "The public subnets to create on availability zones."
 }
 
 variable "enable_dns_hostnames" {
@@ -36,12 +36,14 @@ variable "map_public_ip_on_launch" {
   type        = bool
 }
 
-output "public_subnet_id" {
-  value = aws_subnet.public.id
+output "public_subnet_ids" {
+  description = "List of IDs of public subnets."
+  value       = aws_subnet.public.*.id
 }
 
-output "private_subnet_id" {
-  value = aws_subnet.private.id
+output "private_subnet_ids" {
+  description = "List of IDs of private subnets."
+  value       = aws_subnet.private.*.id
 }
 
 output "vpc_id" {
